@@ -86,7 +86,7 @@ Therefore, the answer is postgres:5432)**
 Run Postgres and load data as shown in the videos
 We'll use the green taxi trips from October 2019:
 
-**(THESE COMMANDS DO NOT WORK ON MAC OS WITHOUT HOMEBREW INSTALLATION OF WGET! NATIVE MAC OS APPROACH IS THE `curl` COMMAND, BUT SOMEHOW `curl -O https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-10.csv.gz` DOES NOT WORK!)**
+**(THESE COMMANDS DO NOT WORK ON MAC OS WITHOUT HOMEBREW INSTALLATION OF WGET! NATIVE MAC OS APPROACH IS THE `curl` COMMAND, BUT SOMEHOW `curl -O https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-10.csv.gz` DOES NOT WORK! IT IS BETTER TO DOWNLOAD MANUALLY.)**
 
 ```bash
 wget https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/green_tripdata_2019-10.csv.gz
