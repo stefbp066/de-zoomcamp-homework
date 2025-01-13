@@ -21,7 +21,7 @@ Run docker with the `python:3.12.8` image in an interactive mode, use the entryp
 What's the version of `pip` in the image?
 
 Commands:
-1. `docker run -it --entrypoint=bash python:3.12.8` \
+1. `docker run -it --entrypoint=bash python:3.12.8`
 2. `pip show pip`
 3. (For other packages installed in the Docker image eg Pandas: `[pkgname].__version__`)
 
