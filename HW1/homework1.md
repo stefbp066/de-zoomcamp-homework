@@ -66,6 +66,7 @@ volumes:
   vol-pgadmin_data:
     name: vol-pgadmin_data
 ```
+(5433:5432 has two ports, from the host machine port to the container port.)
 
 - postgres:5433
 - localhost:5432
