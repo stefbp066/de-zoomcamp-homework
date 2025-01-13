@@ -69,9 +69,9 @@ volumes:
 (5433:5432 has two ports, from the host machine port to the container port.\
 Copy-paste the config into a .yml file, and run `docker compose up -d`)
 
-**From trying all options out after running the .yml file, the answer is localhost:5433 when using external PGAdmin.
+**(From trying all options out after running the .yml file, the answer is localhost:5433 when using external PGAdmin.
 However, accessing the container's own PGAdmin instance via http://localhost:8080/ and making a connection from there will yield the answer of postgres:5432.
-Therefore, the answer is postgres:5432**
+Therefore, the answer is postgres:5432)**
 
 - postgres:5433
 - localhost:5432
@@ -79,6 +79,7 @@ Therefore, the answer is postgres:5432**
 - postgres:5432 ✅
 - db:5432
 
+(To remove this container, run in the CLI: `docker stop $(docker ps -a -q)` then `docker rm $(docker ps -a -q)`)
 
 ##  Prepare Postgres
 
