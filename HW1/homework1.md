@@ -103,6 +103,9 @@ Download this data and put it into Postgres.
 You can use the code from the course. It's up to you whether
 you want to use Jupyter or a python script.
 
+**(Personally setup a Postgres container with command: `docker run -it -e POSTGRES_USER='postgres' -e POSTGRES_PASSWORD='postgres' -e POSTGRES_DB='ny_taxi' -v /[dir_for_container]:/var/lib/postgresql/data -p 5432:5432 postgres:17`) \
+Advise to make own virtual environment for use of Pandas and SQLAlchemy**
+
 ## Question 3. Trip Segmentation Count
 
 During the period of October 1st 2019 (inclusive) and November 1st 2019 (exclusive), how many trips, **respectively**, happened:
