@@ -108,26 +108,26 @@ Advise to make own virtual environment for use of Pandas and SQLAlchemy**
 
 ## Question 3. Trip Segmentation Count
 
-**(Query used: ```# query template using Pandas and SQLAlchemy for a SQL DB \
+**(Query used: ```# query template using Pandas and SQLAlchemy for a SQL DB 
 query = """ 
-with trip_cte as \
-( \
-    select \
-        trip_distance, \
-        CASE \
-            WHEN trip_distance < 1 THEN 'Up to 1 mile' \
-            WHEN trip_distance >= 1 AND trip_distance < 3 THEN 'In between 1 (exclusive) and 3 miles (inclusive)' \
-            WHEN trip_distance >= 3 AND trip_distance < 7 THEN 'In between 3 (exclusive) and 7 miles (inclusive)' \
-            WHEN trip_distance >= 7 AND trip_distance < 10 THEN 'In between 7 (exclusive) and 10 miles (inclusive)' \
-            ELSE 'Over 10 miles' \
-        END as trip_bin \
-    from green_tripdata_2019_10 \
-    where lpep_pickup_datetime::timestamp >= '2019-10-01' and lpep_dropoff_datetime::timestamp < '2019-11-01' \
-) \
-select trip_bin, count(trip_bin) from trip_cte \
-group by trip_bin; \
-""" \
-pd.read_sql(query,con=engine)``` \
+with trip_cte as 
+(
+    select
+        trip_distance,
+        CASE
+            WHEN trip_distance < 1 THEN 'Up to 1 mile'
+            WHEN trip_distance >= 1 AND trip_distance < 3 THEN 'In between 1 (exclusive) and 3 miles (inclusive)'
+            WHEN trip_distance >= 3 AND trip_distance < 7 THEN 'In between 3 (exclusive) and 7 miles (inclusive)'
+            WHEN trip_distance >= 7 AND trip_distance < 10 THEN 'In between 7 (exclusive) and 10 miles (inclusive)'
+            ELSE 'Over 10 miles'
+        END as trip_bin
+    from green_tripdata_2019_10
+    where lpep_pickup_datetime::timestamp >= '2019-10-01' and lpep_dropoff_datetime::timestamp < '2019-11-01'
+)
+select trip_bin, count(trip_bin) from trip_cte
+group by trip_bin;
+"""
+pd.read_sql(query,con=engine)```
 Answer is consistent with the 104,793; 201,407; 110,612; 27,831; 35,281 answer, even though the "up to 1 mile" answer is different. \
 I obtained: 101,065; 201,407; 110,612; 27,831; 35,281.)**
 
