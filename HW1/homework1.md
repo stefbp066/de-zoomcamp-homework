@@ -183,8 +183,24 @@ Which were the top pickup locations with over 13,000 in
 `total_amount` (across all trips) for 2019-10-18?
 
 Consider only `lpep_pickup_datetime` when filtering by date.
- 
-- East Harlem North, East Harlem South, Morningside Heights
+
+**Query I used:**
+```
+query = """
+with pickup_location_total as 
+(
+    select sum(total_amount), "PULocationID"
+    from green_tripdata_2019_10
+    where date_trunc('day',lpep_pickup_datetime::timestamp)::date = '2019-10-18'
+    group by "PULocationID"
+    having sum(total_amount)>13000
+)
+select * from pickup_location_total;
+"""
+pd.read_sql(query,con=engine)
+```
+**Data does not have text corresponding to pickup location ID, so external searching is necessary: https://github.com/fivethirtyeight/uber-tlc-foil-response/blob/master/uber-trip-data/taxi-zone-lookup.csv**
+- East Harlem North, East Harlem South, Morningside Heights ✅ **(code: 74, 75, 166. sum: 18686.68, 16797.26, 13029.79)**
 - East Harlem North, Morningside Heights
 - Morningside Heights, Astoria Park, East Harlem South
 - Bedford, East Harlem North, Astoria Park
