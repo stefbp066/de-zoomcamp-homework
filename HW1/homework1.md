@@ -25,7 +25,7 @@ Commands:
 2. `pip show pip`
 3. (For other packages installed in the Docker image eg Pandas: `[pkgname].__version__`)
 
-- 24.3.1 ✅
+- **24.3.1 ✅**
 - 24.2.1
 - 23.3.1
 - 23.2.1
@@ -76,7 +76,7 @@ Therefore, the answer is postgres:5432)**
 - postgres:5433
 - localhost:5432
 - db:5433
-- postgres:5432 ✅
+- **postgres:5432 ✅**
 - db:5432
 
 (To remove this container, run in the CLI: `docker stop $(docker ps -a -q)` then `docker rm $(docker ps -a -q)`)
@@ -143,7 +143,7 @@ Answers:
 
 - 104,802;  197,670;  110,612;  27,831;  35,281
 - 104,802;  198,924;  109,603;  27,678;  35,189
-- 104,793;  201,407;  110,612;  27,831;  35,281 ✅
+- **104,793;  201,407;  110,612;  27,831;  35,281 ✅**
 - 104,793;  202,661;  109,603;  27,678;  35,189
 - 104,838;  199,013;  109,645;  27,688;  35,202
 
@@ -174,7 +174,7 @@ pd.read_sql(query,con=engine)
 - 2019-10-11 
 - 2019-10-24
 - 2019-10-26
-- 2019-10-31 ✅ **(trip distance found: 515.89, to verify)**
+- **2019-10-31 ✅ (trip distance found: 515.89, to verify)**
 
 
 ## Question 5. Three biggest pickup zones
@@ -200,7 +200,7 @@ select * from pickup_location_total;
 pd.read_sql(query,con=engine)
 ```
 **Data does not have text corresponding to pickup location ID, so external searching is necessary: https://github.com/fivethirtyeight/uber-tlc-foil-response/blob/master/uber-trip-data/taxi-zone-lookup.csv**
-- East Harlem North, East Harlem South, Morningside Heights ✅ **(code: 74, 75, 166. sum: 18686.68, 16797.26, 13029.79)**
+- **East Harlem North, East Harlem South, Morningside Heights ✅ (code: 74, 75, 166. sum: 18686.68, 16797.26, 13029.79)**
 - East Harlem North, Morningside Heights
 - Morningside Heights, Astoria Park, East Harlem South
 - Bedford, East Harlem North, Astoria Park
@@ -215,9 +215,27 @@ the largest tip?
 Note: it's `tip` , not `trip`
 
 We need the name of the zone, not the ID.
+**Query used:**
+```
+# From Question 5, East Harlem North is ID 74.
+query = """
+with largest_tip_pickup as
+(
+    select max(tip_amount) as largest_tip, "DOLocationID"
+    from green_tripdata_2019_10
+    where "PULocationID"=74 and date_trunc('month',lpep_pickup_datetime::timestamp)::date = '2019-10-01'
+    group by "DOLocationID"
+)
+select * from largest_tip_pickup
+order by largest_tip desc
+limit 1;
+"""
+pd.read_sql(query,con=engine)
+# location ID 132 is JFK Airport.
+```
 
 - Yorkville West
-- JFK Airport
+- JFK Airport ✅
 - East Harlem North
 - East Harlem South
 
