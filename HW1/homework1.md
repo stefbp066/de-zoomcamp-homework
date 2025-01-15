@@ -108,8 +108,9 @@ Advise to make own virtual environment for use of Pandas and SQLAlchemy**
 
 ## Question 3. Trip Segmentation Count
 
-**(Query used:** 
-```query = """ 
+**Query used:** 
+```
+query = """
 with trip_cte as 
 (
     select
@@ -127,7 +128,8 @@ with trip_cte as
 select trip_bin, count(trip_bin) from trip_cte
 group by trip_bin;
 """
-pd.read_sql(query,con=engine)```
+pd.read_sql(query,con=engine)
+```
 **Answer is consistent with the 104,793; 201,407; 110,612; 27,831; 35,281 answer, even though the "up to 1 mile" answer is different. I obtained: 101,065; 201,407; 110,612; 27,831; 35,281.)**
 
 During the period of October 1st 2019 (inclusive) and November 1st 2019 (exclusive), how many trips, **respectively**, happened:
