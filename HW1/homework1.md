@@ -235,7 +235,7 @@ pd.read_sql(query,con=engine)
 ```
 
 - Yorkville West
-- JFK Airport ✅
+- **JFK Airport ✅**
 - East Harlem North
 - East Harlem South
 
