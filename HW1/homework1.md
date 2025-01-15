@@ -162,7 +162,6 @@ with longest_trip_day as
 (
     select date_trunc('day',lpep_pickup_datetime::timestamp)::date as pickup_day, max(trip_distance) as longest_trip
     from green_tripdata_2019_10
-    where lpep_pickup_datetime::timestamp >= '2019-10-01' and lpep_dropoff_datetime::timestamp < '2019-11-01'
     group by date_trunc('day',lpep_pickup_datetime::timestamp)::date
 )
 select * from longest_trip_day
@@ -172,10 +171,10 @@ limit 1;
 pd.read_sql(query,con=engine)
 ```
 
-- 2019-10-11 ✅
+- 2019-10-11 
 - 2019-10-24
 - 2019-10-26
-- 2019-10-31
+- 2019-10-31 ✅ **(trip distance found: 515.89, to verify)**
 
 
 ## Question 5. Three biggest pickup zones
