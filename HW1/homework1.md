@@ -109,8 +109,7 @@ Advise to make own virtual environment for use of Pandas and SQLAlchemy**
 ## Question 3. Trip Segmentation Count
 
 **(Query used:** 
-```# query template using Pandas and SQLAlchemy for a SQL DB 
-query = """ 
+```query = """ 
 with trip_cte as 
 (
     select
