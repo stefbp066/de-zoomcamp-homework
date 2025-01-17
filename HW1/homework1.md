@@ -258,11 +258,13 @@ Which of the following sequences, **respectively**, describes the workflow for:
 2. Generating proposed changes and auto-executing the plan
 3. Remove all resources managed by terraform`
 
+**(Number 1 is for `terraform init`, `terraform plan` cannot execute a plan thus `terraform apply -auto-approve` does the job, and `terraform destroy` destroys the resources created with terraform.)**
+
 Answers:
 - terraform import, terraform apply -y, terraform destroy
 - teraform init, terraform plan -auto-apply, terraform rm
 - terraform init, terraform run -auto-aprove, terraform destroy
-- terraform init, terraform apply -auto-aprove, terraform destroy
+- **terraform init, terraform apply -auto-aprove, terraform destroy** ✅
 - terraform import, terraform apply -y, terraform rm
 
 
