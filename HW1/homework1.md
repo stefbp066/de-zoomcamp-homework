@@ -250,6 +250,30 @@ Copy the files from the course repo
 
 Modify the files as necessary to create a GCP Bucket and Big Query Dataset.
 
+**Steps to do this:
+
+Main link: https://www.youtube.com/watch?v=ae-CV2KfoN0&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb&index=15 for step-by-step
+
+1. Make a service account with GCP (https://cloud.google.com/iam/docs/service-accounts-create)
+2. Make SSH keys (https://cloud.google.com/compute/docs/connect/create-ssh-keys) in your local SSH keys folder.
+3. Configure the VM to use Anaconda3 (Individual Edition; https://repo.anaconda.com/archive/Anaconda3-2024.10-1-Linux-x86_64.sh) and then make a "config" file (no extension) in the SSH keys folder again. This allows, upon call, to immediately access the VM as long as the VM is turned on.
+4. Outside the Python instance inside the VM (ie use Bash), and download Docker: `sudo apt-get update`. `sudo apt-get install docker.io`.
+5. Testing Docker by running `docker run hello-world` would not work (ie permission denied), so within Bash inside the VM: `sudo groupadd docker`, `sudo gpasswd -a $USER docker`, `sudo service docker restart`, log out `logout`.
+6. We need to have Docker compose. Get the Github URL of the latest release that is suitable for Linux x86-64 (since that sort of OS was configured in the video in the main link), and run this command in Bash while adapting it as necessary: `wget https://github.com/docker/compose/releases/download/v2.32.4/docker-compose-linux-x86_64 -O docker-compose`.
+7. Run `chmod +x docker-compose` in Bash.
+8. Edit the .bashrc file, not sure why (explained in vid but I cant be bothered to understand it).
+9. Git clone the data-engineering zoomcamp repo in the VM, cd to the directory in Week 1 Chapter 2 (on Docker and SQL) so that running `ls` will have a file called docker-compose.yml, then run `docker-compose up`.
+10. `pip install pgcli` in Bash to install PGAdmin in the container, or install PGCLI from the conda-forge.
+11. Go to the Postgres instance by `pgcli -h localhost -U root -d ny_taxi`, as in the docker-compose file.
+12. VS Code can access the VM by installing the Remote - SSH extension and then going to the search bar, adding a connection. This will open up a new window.
+13. Check the upload-data.ipynb, and install the psycopg2 and sqlalchemy packages via conda-forge or pip in the VM. Then run the commands there, as SQLAlchemy will ingest the data into the database via the established connection.
+14. To test whether the commands are in, use the command in step 11, and do a nice simple query (eg `select * from green_tripdata limit 1;`).
+
+Terraform setup:
+1. Go to the `./bin` folder in the VM.
+2. use `wget https://releases.hashicorp.com/terraform/1.10.4/terraform_1.10.4_linux_amd64.zip` or the latest Terraform version with x86-64 for the type of OS set up.
+3. We need to unzip but the unzip command isn't ready, so `sudo apt-get install unzip` then 
+**
 
 ## Question 7. Terraform Workflow
 
