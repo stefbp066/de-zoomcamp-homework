@@ -32,7 +32,7 @@ Complete the Quiz shown below. It’s a set of 6 multiple-choice questions to te
 
 1) Within the execution for `Yellow` Taxi data for the year `2020` and month `12`: what is the uncompressed file size (i.e. the output file `yellow_tripdata_2020-12.csv` of the `extract` task)?
 **(It seems that looking at the size of the data within Kestra is only possible while using the flow. After the flow is executed, the file size in `extract > outputFiles` will show 0B.)** \
-- 128.3 MB
+- 128.3 MB ✅
 - 134.5 MB
 - 364.7 MB
 - 692.6 MB
