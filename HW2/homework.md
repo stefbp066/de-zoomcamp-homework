@@ -63,8 +63,9 @@ Complete the Quiz shown below. It’s a set of 6 multiple-choice questions to te
 - 2,561,031
 
 6) How would you configure the timezone to New York in a Schedule trigger?
+**(Answer can be found this link: https://kestra.io/docs/workflow-components/triggers/schedule-trigger)**
 - Add a `timezone` property set to `EST` in the `Schedule` trigger configuration  
-- Add a `timezone` property set to `America/New_York` in the `Schedule` trigger configuration
+- Add a `timezone` property set to `America/New_York` in the `Schedule` trigger configuration ✅
 - Add a `timezone` property set to `UTC-5` in the `Schedule` trigger configuration
 - Add a `location` property set to `New_York` in the `Schedule` trigger configuration  
 
