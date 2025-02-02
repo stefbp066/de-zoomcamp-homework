@@ -26,7 +26,7 @@ As a hint, Kestra makes that process really easy:
 
 **First modification I did: add the port to the `docker-compose.yml` in the `02-workflow-orchestration` folder, since I want to check the results of the pipelines locally and the given files does not do this alr.**
 
-**important for backfill (i.e. running pipelines back in time, from what i understand): go to the scheduled flow > go to the triggers menu, and there will be an option for "backfill executions".**
+**important for backfill (i.e. running pipelines back in time, from what i understand): go to the scheduled flow > go to the triggers menu, and there will be an option for "backfill executions". \ Also, all these homework questions can be answered on a local machine, but it would certainly be interesting to do all this in the cloud.**
 
 Complete the Quiz shown below. It’s a set of 6 multiple-choice questions to test your understanding of workflow orchestration, Kestra and ETL pipelines for data lakes and warehouses.
 
@@ -45,21 +45,30 @@ Complete the Quiz shown below. It’s a set of 6 multiple-choice questions to te
 
 **The next 3 questions can be done after full ingestion.**
 3) How many rows are there for the `Yellow` Taxi data for all CSV files in the year 2020?
+**Query I used:**
+`select count(unique_row_id) from yellow_tripdata where filename like '%2020%';`
+
 - 13,537.299
-- 24,648,499
+- 24,648,499 ✅
 - 18,324,219
 - 29,430,127
 
 4) How many rows are there for the `Green` Taxi data for all CSV files in the year 2020?
+**Query I used:**
+`select count(unique_row_id) from green_tripdata where filename like '%2020%';`
+
 - 5,327,301
 - 936,199
-- 1,734,051
+- 1,734,051 ✅
 - 1,342,034
 
 5) How many rows are there for the `Yellow` Taxi data for the March 2021 CSV file?
+**Query I used:**
+`select count(unique_row_id) from yellow_tripdata where filename like '%2021-03%';`
+
 - 1,428,092
 - 706,911
-- 1,925,152
+- 1,925,152 ✅
 - 2,561,031
 
 6) How would you configure the timezone to New York in a Schedule trigger?
