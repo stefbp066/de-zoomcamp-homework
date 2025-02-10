@@ -15,7 +15,12 @@ Question 1: What is count of records for the 2024 Yellow Taxi Data?
 - 20,332,093 ✅
 - 85,431,289
 
-**as i do this, i realize that it's actually possible to do the sql**
+**as i do this, i realize that it's actually possible to do the sql query this way:**
+`CREATE OR REPLACE EXTERNAL TABLE [BQ dataset name].[BQ table name within BQ dataset]
+OPTIONS (
+  format = "PARQUET",
+  uris = ["gs://[GCS bucket name]/yellow_tripdata_2024-*.parquet"]
+);`
 
 ## Question 2:
 Write a query to count the distinct number of PULocationIDs for the entire dataset on both the tables.</br> 
