@@ -74,6 +74,21 @@ Use the materialized table you created earlier in your from clause and note the 
 
 Choose the answer which most closely matches.</br> 
 
+**query for making the partitioned and clustered table:**
+`CREATE OR REPLACE TABLE global-env-447720-j9.de_zoomcamp_datasets.yellow_2024_part_datetime
+PARTITION BY
+  DATE(tpep_pickup_datetime) 
+CLUSTER BY 
+  VendorID
+AS (SELECT * FROM global-env-447720-j9.de_zoomcamp_datasets.yellow_2024);`
+
+**query for the partitioned and clustered table:**
+`select count(distinct VendorID) from `de_zoomcamp_datasets.yellow_2024_part_datetime` WHERE tpep_dropoff_datetime BETWEEN '2024-03-01' AND '2024-03-15';`
+**the above query would be processing 26.86 MB so i assume the second choice is correct. on to the non-partitioned native table.**
+
+**query for non-partitioned native table:**
+``
+
 - 12.47 MB for non-partitioned table and 326.42 MB for the partitioned table
 - 310.24 MB for non-partitioned table and 26.84 MB for the partitioned table
 - 5.87 MB for non-partitioned table and 0 MB for the partitioned table
