@@ -26,19 +26,23 @@ OPTIONS (
 Write a query to count the distinct number of PULocationIDs for the entire dataset on both the tables.</br> 
 What is the **estimated amount** of data that will be read when this query is executed on the External Table and the Table?
 
+**in this case, i got the numbers from just an internal table. unclear if the materialized table is the same as an internal table, or could be something else, since BQ docu has "materialized view" and not a "materialized table".**
+
 - 18.82 MB for the External Table and 47.60 MB for the Materialized Table
-- 0 MB for the External Table and 155.12 MB for the Materialized Table
+- 0 MB for the External Table and 155.12 MB for the Materialized Table ✅
 - 2.14 GB for the External Table and 0MB for the Materialized Table
 - 0 MB for the External Table and 0MB for the Materialized Table
 
 ## Question 3:
 Write a query to retrieve the PULocationID from the table (not the external table) in BigQuery. Now write a query to retrieve the PULocationID and DOLocationID on the same table. Why are the estimated number of Bytes different?
 - BigQuery is a columnar database, and it only scans the specific columns requested in the query. Querying two columns (PULocationID, DOLocationID) requires 
-reading more data than querying one column (PULocationID), leading to a higher estimated number of bytes processed.
+reading more data than querying one column (PULocationID), leading to a higher estimated number of bytes processed. ✅
 - BigQuery duplicates data across multiple storage partitions, so selecting two columns instead of one requires scanning the table twice, 
 doubling the estimated bytes processed.
 - BigQuery automatically caches the first queried column, so adding a second column increases processing time but does not affect the estimated bytes scanned.
 - When selecting multiple columns, BigQuery performs an implicit join operation between them, increasing the estimated bytes processed
+
+**it seems like BigQuery processes only the columns mentioned in the query, owing to its columnar nature. it doesnt seem that it scans the table twice (option 2 unlikely). option 3 implies that the size of the file being processed is the same, which is not the case. option 4 can be eliminated since from my learning, implicit join queries contain `... where a.id=b.id` and we are just doing normal select.**
 
 ## Question 4:
 How many records have a fare_amount of 0?
@@ -46,6 +50,11 @@ How many records have a fare_amount of 0?
 - 546,578
 - 20,188,016
 - 8,333
+
+**query used on external table:**
+`select count(VendorID) 
+from de_zoomcamp_datasets.yellow_2024
+where fare_amount=0;`
 
 ## Question 5:
 What is the best strategy to make an optimized table in Big Query if your query will always filter based on tpep_dropoff_datetime and order the results by VendorID (Create a new table with this strategy)
