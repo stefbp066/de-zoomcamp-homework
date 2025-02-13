@@ -49,7 +49,7 @@ How many records have a fare_amount of 0?
 - 128,210
 - 546,578
 - 20,188,016
-- 8,333
+- 8,333 ✅
 
 **query used on external table:**
 `select count(VendorID) 
@@ -58,7 +58,9 @@ where fare_amount=0;`
 
 ## Question 5:
 What is the best strategy to make an optimized table in Big Query if your query will always filter based on tpep_dropoff_datetime and order the results by VendorID (Create a new table with this strategy)
-- Partition by tpep_dropoff_datetime and Cluster on VendorID
+
+**partitioning seems to work best by going over features such as timestamp data, while clustering works better by grouping high-cardinality features e.g. IDs. therefore,**
+- Partition by tpep_dropoff_datetime and Cluster on VendorID ✅
 - Cluster on by tpep_dropoff_datetime and Cluster on VendorID
 - Cluster on tpep_dropoff_datetime Partition by VendorID
 - Partition by tpep_dropoff_datetime and Partition by VendorID
