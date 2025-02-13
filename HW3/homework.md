@@ -84,34 +84,40 @@ AS (SELECT * FROM global-env-447720-j9.de_zoomcamp_datasets.yellow_2024);`
 
 **query for the partitioned and clustered table:**
 `select count(distinct VendorID) from `de_zoomcamp_datasets.yellow_2024_part_datetime` WHERE tpep_dropoff_datetime BETWEEN '2024-03-01' AND '2024-03-15';`
+
 **the above query would be processing 26.86 MB so i assume the second choice is correct. on to the non-partitioned native table.**
 
 **query for non-partitioned native table:**
-``
+`select count(distinct VendorID) from `de_zoomcamp_datasets.yellow_2024_nonpart` WHERE tpep_dropoff_datetime BETWEEN '2024-03-01' AND '2024-03-15';`
+
+**this query processes 310.24 MB. this quite nicely highlights the importance of partitioning and clustering.**
 
 - 12.47 MB for non-partitioned table and 326.42 MB for the partitioned table
-- 310.24 MB for non-partitioned table and 26.84 MB for the partitioned table
+- 310.24 MB for non-partitioned table and 26.84 MB for the partitioned table ✅
 - 5.87 MB for non-partitioned table and 0 MB for the partitioned table
 - 310.31 MB for non-partitioned table and 285.64 MB for the partitioned table
 
 
 ## Question 7: 
 Where is the data stored in the External Table you created?
+**seems like external tables just point to the gcp bucket files, and dont go beyond that therefore bigquery itself is likely out of the question. big table is basically bigquery for unstructured data and is irrelevant.**
 
 - Big Query
 - Container Registry
-- GCP Bucket
+- GCP Bucket ✅
 - Big Table
 
 ## Question 8:
 It is best practice in Big Query to always cluster your data:
 - True
-- False
+- False ✅
+
+**my rationale for this: if the clustering is for columns that are just not going to be used, there might not be much added value. it might be worse, but i have not been able to find documentation for this to put in the learning-in-public section.**
 
 
 ## (Bonus: Not worth points) Question 9:
 No Points: Write a `SELECT count(*)` query FROM the materialized table you created. How many bytes does it estimate will be read? Why?
-
+**0B is processed! this means that it's not going through any of the actual data, and (i think it) may be retrieving information from the schema metadata as Postgres-type schemas have that information query-able.**
 
 ## Submitting the solutions
 
