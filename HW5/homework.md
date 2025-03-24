@@ -49,9 +49,13 @@ How many taxi trips were there on the 15th of October?
 
 Consider only trips that started on the 15th of October.
 
+`from pyspark.sql import functions as F`
+
+`df.select('tpep_pickup_datetime').filter(F.to_date(df.tpep_pickup_datetime) == '2024-10-15').count()`
+
 - 85,567
 - 105,567
-- 125,567
+- 125,567 **i got 128893 so this is the closest.**
 - 145,567
 
 
