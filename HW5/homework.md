@@ -39,8 +39,8 @@ What is the average size of the Parquet (ending with .parquet extension) Files t
 
 - 6MB
 - 25MB
-- 75MB
-- 100MB **there was only 1 resulting parquet with size 100.8 MB, so this is my answer.**
+- 75MB **there was only 1 resulting parquet file. doing** `ls -lh dir/` **81 M so i will take this one.**
+- 100MB 
 
 
 ## Question 3: Count records 
