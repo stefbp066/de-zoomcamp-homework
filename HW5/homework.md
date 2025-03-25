@@ -63,9 +63,12 @@ Consider only trips that started on the 15th of October.
 
 What is the length of the longest trip in the dataset in hours?
 
+`df = df.withColumn("time_diff_hours", (F.unix_timestamp("tpep_dropoff_datetime") - F.unix_timestamp("tpep_pickup_datetime"))/3600)`
+`df.select(F.max("time_diff_hours")).show()`
+
 - 122
 - 142
-- 162
+- 162 **obtained solution of 162.617 hours, so 162 it is.**
 - 182
 
 
