@@ -78,7 +78,7 @@ Spark’s User Interface which shows the application's dashboard runs on which l
 
 - 80
 - 443
-- 4040
+- 4040 **this one. can do it by forwarding a port in vscode.**
 - 8080
 
 
@@ -93,7 +93,15 @@ wget https://d37ci6vzurychx.cloudfront.net/misc/taxi_zone_lookup.csv
 
 Using the zone lookup data and the Yellow October 2024 data, what is the name of the LEAST frequent pickup location Zone?
 
-- Governor's Island/Ellis Island/Liberty Island
+**my answer:**
+
+`df_zone = spark.read.option('header','true').options(inferSchema='True').csv('taxi_zone_lookup.csv')`
+
+`merge_question = df.join(df_zone,df.PULocationID == df_zone.LocationID, "left")`
+
+`grouped_question = merge_question.select(['tpep_pickup_datetime','LocationID','Zone']).groupBy("Zone").agg(F.count("*").alias("pickup_count")).orderBy("pickup_count").show()`
+
+- Governor's Island/Ellis Island/Liberty Island **this option, because only 1 row comes from this place as the pickup location.**
 - Arden Heights
 - Rikers Island
 - Jamaica Bay
